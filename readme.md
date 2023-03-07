@@ -23,15 +23,15 @@ No entanto, a aprendizagem por reforço profundo também apresenta alguns desafi
 Nada ainda é definitivo aqui, qualquer dúvida, sugestão estarei em live sempre ouvindo.
 
 ## Links:
-[Lives Youtube] (https://www.youtube.com/@Megamil/streams)
-[Lives Twitch] (https://www.twitch.tv/megamilgames)
-[Playlist Youtube] (https://www.youtube.com/@Megamil)
-[Vídeo que me deu a ideia](https://www.youtube.com/watch?v=2tamH76Tjvw)
+* [Lives Youtube](https://www.youtube.com/@Megamil/streams)
+* [Lives Twitch](https://www.twitch.tv/megamilgames)
+* [Playlist Youtube](https://www.youtube.com/@Megamil)
+* [Vídeo que me deu a ideia](https://www.youtube.com/watch?v=2tamH76Tjvw)
 
 ## Ferramentas:
-[Unity](https://unity.com/pt/download)
-[Treino](https://unity.com/products/machine-learning-agents)
-[Modelo do player](https://www.tinkercad.com)
+* [Unity](https://unity.com/pt/download)
+* [Treino](https://unity.com/products/machine-learning-agents)
+* [Modelo do player](https://www.tinkercad.com)
 
 ## Ajude com PIX:
 Envie um PIX para: b45198cd-cafb-4269-92c9-0a2beb8aa247
