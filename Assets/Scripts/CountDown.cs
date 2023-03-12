@@ -7,6 +7,7 @@ public class CountDown : MonoBehaviour
 {
     
     public TextMeshPro label;
+    public TextMeshProUGUI RespawnCounter;
     public GameObject player;
     public float playerX = -5.0f;
     public float playerY = 8.0f;
@@ -14,6 +15,9 @@ public class CountDown : MonoBehaviour
     public int tempoTotal = 10;
     private float tempoDecorrido = 0f;
     private int tempoRestante;
+
+    public GameObject gate;
+    public bool[] clicked = {false,false};
 
     void Start()
     {
@@ -36,8 +40,17 @@ public class CountDown : MonoBehaviour
         else
         {
             tempoRestante = tempoTotal;
+            label.text = "" + tempoRestante;
             player.transform.position = new Vector3(playerX, playerY, playerZ); //@todo
+            RespawnCounter.text = (int.Parse(RespawnCounter.text) + 1) + "";
         }
     }
+
+    private void clickedButton() {
+
+    
+
+    }
+
 
 }
