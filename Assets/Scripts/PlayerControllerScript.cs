@@ -19,6 +19,11 @@ public class PlayerControllerScript : MonoBehaviour
             rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
 
+
+        if(this.transform.position.y < -3) {
+            EventsController.current.respawnLevel();
+        }
+
     }
 
     private void FixedUpdate()

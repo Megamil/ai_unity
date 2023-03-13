@@ -7,26 +7,28 @@ public class CountDown : MonoBehaviour
 {
     
     public TextMeshPro label;
-    public TextMeshProUGUI RespawnCounter;
-    public GameObject player;
-    public float playerX = -5.0f;
-    public float playerY = 8.0f;
-    public float playerZ = -2.0f;
     public int tempoTotal = 10;
     private float tempoDecorrido = 0f;
-    private int tempoRestante;
+    private int? tempoRestante;
 
     public GameObject gate;
     public bool[] clicked = {false,false};
 
     void Start()
     {
+        EventsController.current.onInitCount += initCount;
+        EventsController.current.initCount();  
+    }
+
+    void initCount() {
         tempoRestante = tempoTotal;
         label.text = "" + tempoRestante;
+        EventsController.current.onRespawnLevel += onRespawnLevel;
     }
 
     void Update()
     {
+        if(tempoRestante == null) {return;}
         if (tempoRestante > 0)
         {
             tempoDecorrido += Time.deltaTime;
@@ -39,18 +41,13 @@ public class CountDown : MonoBehaviour
         }
         else
         {
-            tempoRestante = tempoTotal;
-            label.text = "" + tempoRestante;
-            player.transform.position = new Vector3(playerX, playerY, playerZ); //@todo
-            RespawnCounter.text = (int.Parse(RespawnCounter.text) + 1) + "";
+            EventsController.current.respawnLevel();    
         }
     }
 
-    private void clickedButton() {
-
-    
-
+    void onRespawnLevel() {
+        tempoRestante = tempoTotal;
+        label.text = "" + tempoRestante;
     }
-
 
 }
