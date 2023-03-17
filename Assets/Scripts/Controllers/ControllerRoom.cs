@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ControllerRoom2 : MonoBehaviour
+public class ControllerRoom : MonoBehaviour
 {
     
+    public GameObject[] rooms;
+
     public GameObject player;
-    public GameObject gate;
     public TextMeshProUGUI RespawnCounter;
     public GameObject cameraObj;
 
-    public Vector3 playerPosition;
-    public Vector3 gatePosition;
+    private int currentRoom = 0;
+    private GameObject gate;
+    private CountDown cd;
+    private Vector3 playerPosition;
+    private Vector3 gatePosition;
 
     private AnimationCurve moveCurve = new AnimationCurve();
     private float moveDuration = 1f;
 
-    public GameObject buttonMain;
+    private GameObject buttonMain;
 
     void Start() {
 
@@ -30,6 +34,22 @@ public class ControllerRoom2 : MonoBehaviour
         moveCurve.AddKey(1f, 1f);
 
         playerPosition = player.transform.position;
+
+        setValuesRoom();
+
+    }
+
+    void setValuesRoom() {
+
+        if(rooms.Length <= currentRoom) {return;}
+        
+        GameObject room = rooms[currentRoom];
+
+        gate = room.transform.Find("Wall_with_door/Gate").gameObject;
+        buttonMain = room.transform.Find("Buttons").gameObject;
+        cd = room.transform.Find("Timer").gameObject.GetComponent<CountDown>();
+        cd.toogleActiveCountdown();
+
         gatePosition = gate.transform.position;
 
     }
@@ -73,8 +93,11 @@ public class ControllerRoom2 : MonoBehaviour
         Vector3 cameraObjPosition = cameraObj.transform.position;
         Vector3 targetPosition = new Vector3(cameraObjPosition.x + jumpSpace, cameraObjPosition.y, cameraObjPosition.z);
         StartCoroutine(MoveObjAnimated(targetPosition, cameraObj));
-
         playerPosition = new Vector3(playerPosition.x + jumpSpace, playerPosition.y, playerPosition.z);
+        
+        currentRoom += 1;
+        cd.toogleActiveCountdown();
+        setValuesRoom();
 
     }
 

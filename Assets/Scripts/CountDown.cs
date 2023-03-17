@@ -10,9 +10,7 @@ public class CountDown : MonoBehaviour
     public int tempoTotal = 10;
     private float tempoDecorrido = 0f;
     private int? tempoRestante;
-
-    public GameObject gate;
-    public bool[] clicked = {false,false};
+    private bool activeCountdown = false;
 
     void Start()
     {
@@ -26,9 +24,13 @@ public class CountDown : MonoBehaviour
         EventsController.current.onRespawnLevel += onRespawnLevel;
     }
 
+    public void toogleActiveCountdown() {
+        activeCountdown = !activeCountdown;
+    }
+
     void Update()
     {
-        if(tempoRestante == null) {return;}
+        if(!activeCountdown || tempoRestante == null) {return;}
         if (tempoRestante > 0)
         {
             tempoDecorrido += Time.deltaTime;
@@ -46,6 +48,7 @@ public class CountDown : MonoBehaviour
     }
 
     void onRespawnLevel() {
+        if(!activeCountdown || tempoRestante == null) {return;}
         tempoRestante = tempoTotal;
         label.text = "" + tempoRestante;
     }
